@@ -4,7 +4,7 @@ A CKEditor plugin to easily add code into your articles.
 The plugin will create a dialog where you will be able to format your code as your will. When you press the **OK** button, the plugin will create a *pre* tag with your code inside.
 
 # Demo
-See it in action ! 
+See it in action ! http://prbaron.github.com/PBCKCode/
 
 # Installation
 1. Download the plugin from the Github repository : [https://github.com/prbaron/PBCKCode/tags](https://github.com/prbaron/PBCKCode/tags)
