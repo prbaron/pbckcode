@@ -75,7 +75,7 @@ return {
 			
 			// we load the ACE plugin to our div
 			AceEditor = ace.edit("code");
-			AceEditor.getSession().setMode("ace/mode/php");
+			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbcode.default);
 			AceEditor.setTheme("ace/theme/" + editor.config.pbcode.theme);
 		},
 		onShow : function() {
