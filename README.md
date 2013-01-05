@@ -28,7 +28,10 @@ Here is properties you can customize and their default value :
 <pre>
 config.pbcode  = {
 	'class' : 'prettyprint linenums',	// the class(es) added to the pre tag, useful if you use a syntax highlighter (here it is Google Prettify)
-	'mode' : [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ], // all the languages you want to deal with in the plugin
+	'mode' : [ 
+		['PHP'  , 'php'], 
+		['HTML' , 'html'], 
+		['CSS'  , 'css'] ], // all the languages you want to deal with in the plugin
   	'default' : 'php', // the default value for the mode select. Well in fact it is the first value of the mode array
 	'theme' : 'textmate' // the theme of the code editor
 };
