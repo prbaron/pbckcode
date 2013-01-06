@@ -59,7 +59,13 @@ return {
 				html  : '<div id="code"></div>',
 				setup : function(element) {
 					// get the value of the editor
-					AceEditor.setValue(element.getHtml().replace('<br/>', '\n'));
+					code = element.getHtml();
+					code = code.replace(new RegExp('<br/>', 'g'), '\n');
+					code = code.replace(new RegExp('&lt;', 'g'), '<');
+					code = code.replace(new RegExp('&gt;', 'g'), '>');
+					code = code.replace(new RegExp('&amp;', 'g'), '&');
+					
+					AceEditor.setValue(code);
 				}, 
 				commit : function(element) {
 					element.setText(AceEditor.getValue());
