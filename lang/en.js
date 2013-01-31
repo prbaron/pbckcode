@@ -1,4 +1,4 @@
-CKEDITOR.plugins.setLang("pbcode","en",
+CKEDITOR.plugins.setLang("pbckcode","en",
 {
 	title: 'Add code',
 });

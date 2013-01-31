@@ -1,35 +1,35 @@
-CKEDITOR.dialog.add('pbcodeDialog', function ( editor ) {
+CKEDITOR.dialog.add('pbckcodeDialog', function ( editor ) {
 
 // load JS file
 var head = document.getElementsByTagName('HEAD').item(0);
 var script= document.createElement("script");
 script.type = "text/javascript";
-script.src = CKEDITOR.plugins.getPath('pbcode') + "dialogs/ace/ace.js";
+script.src = CKEDITOR.plugins.getPath('pbckcode') + "dialogs/ace/ace.js";
 head.appendChild(script);
 
 // load CSS file
 var link  = document.createElement('link');
 link.rel  = 'stylesheet';
 link.type = 'text/css';
-link.href = CKEDITOR.plugins.getPath('pbcode') + "dialogs/style.css";
+link.href = CKEDITOR.plugins.getPath('pbckcode') + "dialogs/style.css";
 link.media = 'all';
 head.appendChild(link);
 
 // default values of the plugin
-if(editor.config.pbcode.class == undefined)
-	editor.config.pbcode.class = "prettyprint linenums";
-if(editor.config.pbcode.mode == undefined)
-	editor.config.pbcode.mode =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
-if(editor.config.pbcode.default == undefined)
-	editor.config.pbcode.default =  editor.config.pbcode.mode[0][1];
-if(editor.config.pbcode.theme == undefined)
-	editor.config.pbcode.theme = 'textmate';
+if(editor.config.pbckcode.class == undefined)
+	editor.config.pbckcode.class = "prettyprint linenums";
+if(editor.config.pbckcode.mode == undefined)
+	editor.config.pbckcode.mode =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
+if(editor.config.pbckcode.default == undefined)
+	editor.config.pbckcode.default =  editor.config.pbckcode.mode[0][1];
+if(editor.config.pbckcode.theme == undefined)
+	editor.config.pbckcode.theme = 'textmate';
 
 var AceEditor;
 
 return {
 		// Basic properties of the dialog window: title, minimum size.
-		title: editor.lang.pbcode.title,
+		title: editor.lang.pbckcode.title,
 		minWidth: 600,
 		minHeight: 400,
 
@@ -37,13 +37,13 @@ return {
 		contents:
 		[{
 			id		 : 'code-container',
-			label	 : editor.lang.pbcode.tabCode,
+			label	 : editor.lang.pbckcode.tabCode,
 			elements :
 			[{
 				type    : 'select',
 				id      : 'code-select',
-				items   : editor.config.pbcode.mode,
-				default : editor.config.pbcode.default,
+				items   : editor.config.pbckcode.mode,
+				default : editor.config.pbckcode.default,
 				setup   : function(element) {	
 					this.setValue(element.getAttribute("data-language"));
 				},
@@ -61,6 +61,7 @@ return {
 					// get the value of the editor
 					code = element.getHtml();
 					code = code.replace(new RegExp('<br/>', 'g'), '\n');
+					code = code.replace(new RegExp('<br>', 'g'), '\n');
 					code = code.replace(new RegExp('&lt;', 'g'), '<');
 					code = code.replace(new RegExp('&gt;', 'g'), '>');
 					code = code.replace(new RegExp('&amp;', 'g'), '&');
@@ -81,8 +82,8 @@ return {
 			
 			// we load the ACE plugin to our div
 			AceEditor = ace.edit("code");
-			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbcode.default);
-			AceEditor.setTheme("ace/theme/" + editor.config.pbcode.theme);
+			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbckcode.default);
+			AceEditor.setTheme("ace/theme/" + editor.config.pbckcode.theme);
 		},
 		onShow : function() {
 			// get the select
@@ -122,7 +123,7 @@ return {
 			
 			// we add a new pre tag into ckeditor editor
 			if(this.insertMode) {
-				pre.setAttribute('class', editor.config.pbcode.class);		
+				pre.setAttribute('class', editor.config.pbckcode.class);		
 				editor.insertElement(pre);
 			}
 			

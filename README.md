@@ -8,7 +8,7 @@ See it in action ! http://prbaron.github.com/PBCKCode/
 
 # Installation
 1. Download the plugin from the Github repository : [https://github.com/prbaron/PBCKCode/tags](https://github.com/prbaron/PBCKCode/tags)
-2. Rename it to **pbcode** (it will be easier to call it into CKEditor)
+2. Rename it to **pbckcode** (it will be easier to call it into CKEditor)
 3. Place the folder into the plugins folder of CKEditor ( *{Path to CKEDitor}/plugins/* ) 
 4. Open the config.js file and add the following lines :   
 <pre>
@@ -16,7 +16,7 @@ See it in action ! http://prbaron.github.com/PBCKCode/
 config.toolbarGroups = [
 	{ name: 'others' },
 ];
-config.extraPlugins = 'pbcode';
+config.extraPlugins = 'pbckcode';
 </pre>
 
 And you are good to go! You will have the same configuration than the demo.
@@ -26,7 +26,7 @@ This plugin comes with a full set of themes and modes, you can see all these thi
 
 Here is properties you can customize and their default value : 
 <pre>
-config.pbcode  = {
+config.pbckcode  = {
 	'class' : 'prettyprint linenums',	// the class(es) added to the pre tag, useful if you use a syntax highlighter (here it is Google Prettify)
 	'mode' : [ 
 		['PHP'  , 'php'], 
