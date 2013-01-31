@@ -7,10 +7,9 @@ The plugin will create a dialog where you will be able to format your code as yo
 See it in action ! http://prbaron.github.com/PBCKCode/
 
 # Installation
-1. Download the plugin from the Github repository : [https://github.com/prbaron/PBCKCode/tags](https://github.com/prbaron/PBCKCode/tags)
-2. Rename it to **pbckcode** (it will be easier to call it into CKEditor)
-3. Place the folder into the plugins folder of CKEditor ( *{Path to CKEDitor}/plugins/* ) 
-4. Open the config.js file and add the following lines :   
+ - Download the plugin from the Github repository : [https://github.com/prbaron/PBCKCode/tags](https://github.com/prbaron/PBCKCode/tags)
+ - Place the folder into the plugins folder of CKEditor ( *{Path to CKEDitor}/plugins/* ) 
+ - Open the config.js file and add the following lines :   
 <pre>
 // I juste paste the important lines, you can add all the toolbar buttons you want
 config.toolbarGroups = [
