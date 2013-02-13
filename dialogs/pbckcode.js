@@ -16,12 +16,12 @@ link.media = 'all';
 head.appendChild(link);
 
 // default values of the plugin
-if(editor.config.pbckcode.class == undefined)
-	editor.config.pbckcode.class = "prettyprint linenums";
-if(editor.config.pbckcode.mode == undefined)
-	editor.config.pbckcode.mode =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
-if(editor.config.pbckcode.default == undefined)
-	editor.config.pbckcode.default =  editor.config.pbckcode.mode[0][1];
+if(editor.config.pbckcode.cls == undefined)
+	editor.config.pbckcode.cls = "prettyprint linenums";
+if(editor.config.pbckcode.modes == undefined)
+	editor.config.pbckcode.modes =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
+if(editor.config.pbckcode.defaultMode == undefined)
+	editor.config.pbckcode.defaultMode =  editor.config.pbckcode.modes[0][1];
 if(editor.config.pbckcode.theme == undefined)
 	editor.config.pbckcode.theme = 'textmate';
 
@@ -40,11 +40,11 @@ return {
 			label	 : editor.lang.pbckcode.tabCode,
 			elements :
 			[{
-				type    : 'select',
-				id      : 'code-select',
-				items   : editor.config.pbckcode.mode,
-				default : editor.config.pbckcode.default,
-				setup   : function(element) {	
+				type        : 'select',
+				id          : 'code-select',
+				items       : editor.config.pbckcode.modes,
+				defaultMode : editor.config.pbckcode.defaultMode,
+				setup       : function(element) {	
 					this.setValue(element.getAttribute("data-language"));
 				},
 				commit : function(element) {
@@ -82,7 +82,7 @@ return {
 			
 			// we load the ACE plugin to our div
 			AceEditor = ace.edit("code");
-			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbckcode.default);
+			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbckcode.defaultMode);
 			AceEditor.setTheme("ace/theme/" + editor.config.pbckcode.theme);
 		},
 		onShow : function() {
@@ -123,7 +123,7 @@ return {
 			
 			// we add a new pre tag into ckeditor editor
 			if(this.insertMode) {
-				pre.setAttribute('class', editor.config.pbckcode.class);		
+				pre.setAttribute('class', editor.config.pbckcode.cls);		
 				editor.insertElement(pre);
 			}
 			
