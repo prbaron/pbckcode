@@ -24,6 +24,17 @@ if(editor.config.pbckcode.defaultMode == undefined)
 	editor.config.pbckcode.defaultMode =  editor.config.pbckcode.modes[0][1];
 if(editor.config.pbckcode.theme == undefined)
 	editor.config.pbckcode.theme = 'textmate';
+if (editor.config.pbckcode.highlitjs == undefined)
+    editor.config.pbckcode.highlitjs = false;
+
+//check if highlight.js is used and set names of element/attribute
+if(editor.config.pbckcode.highlitjs){
+editor.config.pbckcode.languagePrefix ="class";
+editor.config.pbckcode.htmlElement ="code"
+} else {
+editor.config.pbckcode.languagePrefix ="data-language";
+editor.config.pbckcode.htmlElement ="pre"
+}
 
 var AceEditor;
 
@@ -45,10 +56,10 @@ return {
 				items       : editor.config.pbckcode.modes,
 				defaultMode : editor.config.pbckcode.defaultMode,
 				setup       : function(element) {	
-					this.setValue(element.getAttribute("data-language"));
+					this.setValue(element.getAttribute(editor.config.pbckcode.languagePrefix));
 				},
 				commit : function(element) {
-					element.setAttribute("data-language", this.getValue());
+					element.setAttribute(editor.config.pbckcode.languagePrefix, this.getValue());
 				},
 				onChange: function(api) {
 					AceEditor.getSession().setMode("ace/mode/" + this.getValue());
@@ -93,11 +104,11 @@ return {
 			
 			// looking for the pre parent tag
 			if(element)
-				element = element.getAscendant('pre', true);
+				element = element.getAscendant(editor.config.pbckcode.htmlElement, true);
 			
 			// if there is no pre tag, it is an addition. Therefore, it is an edition
-			if(!element || element.getName() != 'pre') {
-				element = editor.document.createElement('pre');
+			if(!element || element.getName() != editor.config.pbckcode.htmlElement) {
+				element = editor.document.createElement(editor.config.pbckcode.htmlElement);
 				this.insertMode = true;
 			}
 			else
@@ -116,17 +127,26 @@ return {
 		// This method is invoked once a user clicks the OK button, confirming the dialog.
 		onOk: function() {
 			var dialog = this,
-				pre = this.element;
+				element = this.element;
 			
 			// we get the value of the inputs
-			this.commitContent(pre);
+			this.commitContent(element);
 			
 			// we add a new pre tag into ckeditor editor
 			if(this.insertMode) {
-				pre.setAttribute('class', editor.config.pbckcode.cls);		
-				editor.insertElement(pre);
+
+				// when highlight.js is used, check if 'pre' is the parent node otherwise add 'pre' element
+				if(editor.config.pbckcode.highlitjs){ 
+					var codeElement = element;
+					element = codeElement.getParent();
+	                if(!element || element.getName() != 'pre'){
+	                    element = editor.document.createElement('pre');
+	                    codeElement.appendTo(element);
+	                }
+         	   }
+         	   	element.setAttribute('class', editor.config.pbckcode.cls);
+				editor.insertElement(element);
 			}
-			
 		}
 	};
 
