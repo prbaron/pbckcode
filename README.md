@@ -32,9 +32,13 @@ config.pbckcode  = {
 		['HTML' , 'html'], 
 		['CSS'  , 'css'] ], // all the languages you want to deal with in the plugin
   	'defaultMode' : 'php', // the default value for the mode select. Well in fact it is the first value of the mode array
-	'theme' : 'textmate' // the theme of the code editor
+	'theme' : 'textmate', // the theme of the code editor
+	'highlitjs' : true // turn highlitjs format on/off. default: false 
 };
 </pre>
+
+###highlight.js
+Additionally you can switch the output to [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) compatible format (see sample config) <pre>&lt;pre&gt;&lt;code class="PHP"&gt;&lt;/code&gt;&lt;/pre&gt;</pre>
 
 ## Mode
 The mode property is an associative array of all the mode you want to be able to choose in the select. Each language has to be initialized in an array containing the label and the value. The defaut configuration create this select : 
