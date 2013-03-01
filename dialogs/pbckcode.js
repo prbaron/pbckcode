@@ -19,7 +19,7 @@ head.appendChild(link);
 if(editor.config.pbckcode.cls == undefined)
 	editor.config.pbckcode.cls = "prettyprint linenums";
 if(editor.config.pbckcode.modes == undefined)
-	editor.config.pbckcode.modes =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
+	editor.config.pbckcode.modes =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'javascript'] ]
 if(editor.config.pbckcode.defaultMode == undefined)
 	editor.config.pbckcode.defaultMode =  editor.config.pbckcode.modes[0][1];
 if(editor.config.pbckcode.theme == undefined)
@@ -40,11 +40,11 @@ return {
 			label	 : editor.lang.pbckcode.tabCode,
 			elements :
 			[{
-				type        : 'select',
-				id          : 'code-select',
-				items       : editor.config.pbckcode.modes,
-				defaultMode : editor.config.pbckcode.defaultMode,
-				setup       : function(element) {	
+				type    : 'select',
+				id      : 'code-select',
+				items   : editor.config.pbckcode.modes,
+				default : editor.config.pbckcode.defaultMode,
+				setup   : function(element) {
 					this.setValue(element.getAttribute("data-language"));
 				},
 				commit : function(element) {
@@ -60,14 +60,15 @@ return {
 				setup : function(element) {
 					// get the value of the editor
 					code = element.getHtml();
+					// replace some regexp
 					code = code.replace(new RegExp('<br/>', 'g'), '\n');
 					code = code.replace(new RegExp('<br>', 'g'), '\n');
 					code = code.replace(new RegExp('&lt;', 'g'), '<');
 					code = code.replace(new RegExp('&gt;', 'g'), '>');
 					code = code.replace(new RegExp('&amp;', 'g'), '&');
-					
+
 					AceEditor.setValue(code);
-				}, 
+				},
 				commit : function(element) {
 					element.setText(AceEditor.getValue());
 				}
@@ -79,7 +80,7 @@ return {
 			code.style.width = '600px';
 			code.style.height = '380px';
 			code.style.position = 'relative';
-			
+
 			// we load the ACE plugin to our div
 			AceEditor = ace.edit("code");
 			AceEditor.getSession().setMode("ace/mode/" + editor.config.pbckcode.defaultMode);
@@ -90,11 +91,11 @@ return {
 			var selection = editor.getSelection();
 			// get the entire element
 			var element = selection.getStartElement();
-			
+
 			// looking for the pre parent tag
 			if(element)
 				element = element.getAscendant('pre', true);
-			
+
 			// if there is no pre tag, it is an addition. Therefore, it is an edition
 			if(!element || element.getName() != 'pre') {
 				element = editor.document.createElement('pre');
@@ -102,31 +103,31 @@ return {
 			}
 			else
 				this.insertMode = false;
-			
+
 			// get the element to fill the inputs
 			this.element = element;
-			
+
 			// we empty the editor
 			AceEditor.setValue('');
-			
+
 			// we fill the inputs
 			if(!this.insertMode)
-				this.setupContent(this.element);		
+				this.setupContent(this.element);
 		},
 		// This method is invoked once a user clicks the OK button, confirming the dialog.
 		onOk: function() {
 			var dialog = this,
 				pre = this.element;
-			
+
 			// we get the value of the inputs
 			this.commitContent(pre);
-			
+
 			// we add a new pre tag into ckeditor editor
 			if(this.insertMode) {
-				pre.setAttribute('class', editor.config.pbckcode.cls);		
+				pre.setAttribute('class', editor.config.pbckcode.cls);
 				editor.insertElement(pre);
 			}
-			
+
 		}
 	};
 
