@@ -19,16 +19,18 @@ head.appendChild(link);
 if(editor.config.pbckcode.cls == undefined)
 	editor.config.pbckcode.cls = "prettyprint linenums";
 if(editor.config.pbckcode.modes == undefined)
-	editor.config.pbckcode.modes =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ]
+	editor.config.pbckcode.modes =  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ];
 if(editor.config.pbckcode.defaultMode == undefined)
 	editor.config.pbckcode.defaultMode =  editor.config.pbckcode.modes[0][1];
 if(editor.config.pbckcode.theme == undefined)
 	editor.config.pbckcode.theme = 'textmate';
 if (editor.config.pbckcode.highlitjs == undefined)
     editor.config.pbckcode.highlitjs = false;
+if (editor.config.pbckcode.prismjs == undefined)
+	editor.config.pbckcode.prismjs = false;
 
-//check if highlight.js is used and set names of element/attribute
-if(editor.config.pbckcode.highlitjs){
+//check if highlight.js or prism.js is used and set names of element/attribute
+    if(editor.config.pbckcode.highlitjs || editor.config.pbckcode.prismjs ){
 editor.config.pbckcode.languagePrefix ="class";
 editor.config.pbckcode.htmlElement ="code"
 } else {
@@ -59,7 +61,12 @@ return {
 					this.setValue(element.getAttribute(editor.config.pbckcode.languagePrefix));
 				},
 				commit : function(element) {
-					element.setAttribute(editor.config.pbckcode.languagePrefix, this.getValue());
+					 // add prism.js specific "language" prefix
+					if(editor.config.pbckcode.prismjs){
+						element.setAttribute(editor.config.pbckcode.languagePrefix, "language-" + this.getValue());
+					}else {
+						element.setAttribute(editor.config.pbckcode.languagePrefix, this.getValue());
+					}
 				},
 				onChange: function(api) {
 					AceEditor.getSession().setMode("ace/mode/" + this.getValue());
@@ -70,7 +77,7 @@ return {
 				html  : '<div id="code"></div>',
 				setup : function(element) {
 					// get the value of the editor
-					code = element.getHtml();
+					var code = element.getHtml();
 					code = code.replace(new RegExp('<br/>', 'g'), '\n');
 					code = code.replace(new RegExp('<br>', 'g'), '\n');
 					code = code.replace(new RegExp('&lt;', 'g'), '<');
@@ -136,7 +143,7 @@ return {
 			if(this.insertMode) {
 
 				// when highlight.js is used, check if 'pre' is the parent node otherwise add 'pre' element
-				if(editor.config.pbckcode.highlitjs){ 
+				if(editor.config.pbckcode.highlitjs || editor.config.pbckcode.prismjs){
 					var codeElement = element;
 					element = codeElement.getParent();
 	                if(!element || element.getName() != 'pre'){
@@ -149,6 +156,4 @@ return {
 			}
 		}
 	};
-
-
 });
