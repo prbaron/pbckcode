@@ -15,6 +15,9 @@ link.href = CKEDITOR.plugins.getPath('pbckcode') + "dialogs/style.css";
 link.media = 'all';
 head.appendChild(link);
 
+if(editor.config.pbckcode == undefined)
+	editor.config.pbckcode = {};
+
 // default values of the plugin
 if(editor.config.pbckcode.cls == undefined)
 	editor.config.pbckcode.cls = "prettyprint linenums";
