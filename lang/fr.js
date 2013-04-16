@@ -1,4 +1,6 @@
 CKEDITOR.plugins.setLang("pbckcode","fr",
 {
-	title: 'Ajouter du code'
+	title: 'PBCKCODE',
+	addCode : 'Ajouter du code',
+	editCode : 'Modifier ce code'
 });
