@@ -9,6 +9,9 @@ See it in action ! http://prbaron.github.io/PBCKCode/
 # Documentation
 http://prbaron.github.io/PBCKCode/
 
+# Workflox
+https://trello.com/board/pbckcode/5165bd2d155acef86d00589e
+
 #Changelog
 ## 1.1.0
   * Supports CKEditor 4.0 & 4.1
