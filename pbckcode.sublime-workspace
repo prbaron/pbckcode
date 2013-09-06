@@ -232,6 +232,17 @@
 	},
 	"file_history":
 	[
+		"/Users/Pierre/Sites/symfony/app/config/routing.yml",
+		"/Users/Pierre/GitHub/pbckcode/README.md",
+		"/Users/Pierre/GitHub/pbckcode/js/ckeditor/plugins/pbckcode/lang/en.js",
+		"/Users/Pierre/GitHub/pbckcode/js/ckeditor/plugins/pbckcode/lang/fr.js",
+		"/Users/Pierre/GitHub/pbckcode/index.html",
+		"/Users/Pierre/Sites/pbckcode/docs.html",
+		"/Users/Pierre/Sites/pbckcode/index.html",
+		"/Users/Pierre/GitHub/pbckcode/js/ckeditor/plugins/pbckcode/dialogs/style.css",
+		"/Users/Pierre/GitHub/pbckcode/js/ckeditor/plugins/pbckcode/dialogs/pbckcode.js",
+		"/Users/Pierre/GitHub/pbckcode/js/ckeditor/plugins/pbckcode/plugin.js",
+		"/Users/Pierre/GitHub/pbckcode/pbckcode.sublime-workspace",
 		"/Users/Pierre/Sites/okimi-app/mockups/sass/foundation/components/modules/_tabs.scss",
 		"/Users/Pierre/Sites/okimi-app/mockups/sass/_settings.scss",
 		"/Users/Pierre/Sites/okimi-app/mockups/sass/app.scss",
@@ -348,18 +359,7 @@
 		"/C/wamp/www/saia/app/Controller/IndexblocksController.php",
 		"/C/wamp/www/saia/app/View/Cameras/admin_edit.ctp",
 		"/C/wamp/www/saia/app/Config/core.php",
-		"/C/wamp/www/saia/app/Model/Camera.php",
-		"/C/wamp/www/saia/app/Controller/AppController.php",
-		"/C/wamp/www/saia/app/Controller/WeathersController.php",
-		"/C/wamp/www/saia/app/Lib/SaiaCommunicator.php",
-		"/C/wamp/www/saia/app/View/Errors/missing_isea_connection.ctp",
-		"/C/wamp/www/saia/app/Lib/exceptions.php",
-		"/C/wamp/www/saia/app/webroot/js/admin.js",
-		"/C/Documents and Settings/Administrateur/Bureau/Project maquette_site2_v01_20120523_1417/CPU1/html/chauffage_rdc.html",
-		"/C/wamp/www/saia/app/Controller/ShuttersController.php",
-		"/C/wamp/www/saia/app/Controller/LightsController.php",
-		"/C/wamp/www/saia/app/Model/Light.php",
-		"/C/wamp/www/saia/app/Model/Shutter.php"
+		"/C/wamp/www/saia/app/Model/Camera.php"
 	],
 	"find":
 	{
