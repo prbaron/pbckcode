@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.2.0 (4.0.x, 4.1.x, 4.2.x, 4.3.x)
+## v1.2.1 (4.0.x, 4.1.x, 4.2.x, 4.3.x)
 
   * [FIX] : problem with minification for CKEditor Builder
   * [FIX] : multiples script loads when you instanciate several CKEditor on the same page
