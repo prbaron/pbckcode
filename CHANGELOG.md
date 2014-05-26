@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1 (4.0.x, 4.1.x, 4.2.x, 4.3.x, 4.4.x)
+
+  * [FIX] : Fixes ckeditor style overriden by pbckcode plugin
+
 ## v1.2.1 (4.0.x, 4.1.x, 4.2.x, 4.3.x)
 
   * [FIX] : problem with minification for CKEditor Builder
