@@ -43,6 +43,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                     {
                         type      : 'select',
                         id        : 'code-select',
+                        className : 'cke_pbckcode_form',
                         label     : editor.lang.pbckcode.mode,
                         items     : settings.modes,
                         'default' : settings.modes[0][1],
@@ -65,6 +66,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                     {
                         type      : 'select',
                         id        : 'code-tabsize-select',
+                        className : 'cke_pbckcode_form',
                         label     : 'Tab size',
                         items     : tab_sizes,
                         'default' : tab_sizes[2],
@@ -93,6 +95,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                 type   : 'html',
                 html   : '<div></div>',
                 id     : 'code-textarea',
+                className : 'cke_pbckcode_ace',
                 style  : 'position: absolute; top: 80px; left: 10px; right: 10px; bottom: 50px;',
                 setup  : function (element) {
                     // get the value of the editor
