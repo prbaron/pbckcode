@@ -3,3 +3,5 @@
 *.sublime-workspace
 
 *.sublime-project
+
+.idea/

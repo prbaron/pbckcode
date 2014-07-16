@@ -11,10 +11,10 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
     var DEFAULT_SETTINGS = {
         cls      : '',
         modes    : [
-			['HTML', 'html'],
-			['CSS', 'css'],
-			['PHP', 'php'],
-			['JS', 'javascript']
+            ['HTML', 'html'],
+            ['CSS', 'css'],
+            ['PHP', 'php'],
+            ['JS', 'javascript']
         ],
         theme    : 'textmate',
         tab_size : 4
@@ -25,8 +25,8 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
     // merge user settings with default settings
     var settings = CKEDITOR.tools.extend(DEFAULT_SETTINGS, editor.config.pbckcode, true);
 
-	// CKEditor variables
-	var dialog;
+    // CKEditor variables
+    var dialog;
     var shighlighter = new PBSyntaxHighlighter(settings.highlighter);
 
     // ACE variables
@@ -92,25 +92,26 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                 ]
             },
             {
-                type   : 'html',
-                html   : '<div></div>',
-                id     : 'code-textarea',
+                type      : 'html',
+                html      : '<div></div>',
+                id        : 'code-textarea',
                 className : 'cke_pbckcode_ace',
-                style  : 'position: absolute; top: 80px; left: 10px; right: 10px; bottom: 50px;',
-                setup  : function (element) {
+                style     : 'position: absolute; top: 80px; left: 10px; right: 10px; bottom: 50px;',
+                setup     : function (element) {
                     // get the value of the editor
                     var code = element.getHtml();
 
                     // replace some regexp
-                    code = code.replace(new RegExp('<br/>', 'g'), '\n');
-                    code = code.replace(new RegExp('<br>', 'g'), '\n');
-                    code = code.replace(new RegExp('&lt;', 'g'), '<');
-                    code = code.replace(new RegExp('&gt;', 'g'), '>');
-                    code = code.replace(new RegExp('&amp;', 'g'), '&');
+                    code = code.replace(new RegExp('<br/>', 'g'), '\n')
+                        .replace(new RegExp('<br>', 'g'), '\n')
+                        .replace(new RegExp('&lt;', 'g'), '<')
+                        .replace(new RegExp('&gt;', 'g'), '>')
+                        .replace(new RegExp('&amp;', 'g'), '&')
+                        .replace(new RegExp('&nbsp;', 'g'), ' ');
 
                     aceEditor.setValue(code);
                 },
-                commit : function (element) {
+                commit    : function (element) {
                     element.setText(aceEditor.getValue());
                 }
             }
@@ -128,21 +129,21 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
             editorPanel
         ],
         onLoad    : function () {
-			dialog = this;
+            dialog = this;
             // we load the ACE plugin to our div
             aceEditor = ace.edit(dialog.getContentElement('editor', 'code-textarea')
-            	.getElement().getId());
+                .getElement().getId());
             // save the aceEditor into the editor object for the resize event
             editor.aceEditor = aceEditor;
 
             // set default settings
             aceEditor.setTheme("ace/theme/" + settings.theme);
-			aceEditor.setHighlightActiveLine(true);
+            aceEditor.setHighlightActiveLine(true);
 
             aceSession = aceEditor.getSession();
-			aceSession.setMode("ace/mode/" + settings.modes[0][1]);
+            aceSession.setMode("ace/mode/" + settings.modes[0][1]);
             aceSession.setTabSize(settings.tab_size);
-			aceSession.setUseSoftTabs(true);
+            aceSession.setUseSoftTabs(true);
 
             // load ace extensions
             whitespace = ace.require('ace/ext/whitespace');
