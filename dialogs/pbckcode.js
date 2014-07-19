@@ -176,6 +176,9 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
             // get the element to fill the inputs
             this.element = element;
 
+            // focus on the editor
+            aceEditor.focus();
+
             // we empty the editor
             aceEditor.setValue('');
 
