@@ -34,7 +34,7 @@ CKEDITOR.plugins.add('pbckcode', {
             ],
             theme    : 'textmate',
             tab_size : 4,
-            js       : "http://cdn.jsdelivr.net//ace/1.1.3/noconflict///"
+            js       : "http://cdn.jsdelivr.net//ace/1.1.4/noconflict///"
         };
 
         // merge user settings with default settings
@@ -102,7 +102,8 @@ CKEDITOR.plugins.add('pbckcode', {
     }
 });
 function normalizeJsUrl(js) {
-    return js.replace(new RegExp('([^:]\/)\/+', 'g'), '$1');
+    return js.concat("/")
+        .replace(new RegExp('([^:]\/)\/+', 'g'), '$1');
 }
 function getScriptUrl(prefix, scriptName) {
     return prefix + scriptName;
