@@ -1,33 +1,11 @@
 CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
     "use strict";
 
-    // if there is no user settings
-    // create an empty object
-    if (editor.config.pbckcode === undefined) {
-        editor.config.pbckcode = {};
-    }
-
-    // default settings object
-    var DEFAULT_SETTINGS = {
-        cls      : '',
-        modes    : [
-            ['HTML', 'html'],
-            ['CSS', 'css'],
-            ['PHP', 'php'],
-            ['JS', 'javascript']
-        ],
-        theme    : 'textmate',
-        tab_size : 4
-    };
-
     var tab_sizes = ["1", "2", "4", "8"];
-
-    // merge user settings with default settings
-    var settings = CKEDITOR.tools.extend(DEFAULT_SETTINGS, editor.config.pbckcode, true);
 
     // CKEditor variables
     var dialog;
-    var shighlighter = new PBSyntaxHighlighter(settings.highlighter);
+    var shighlighter = new PBSyntaxHighlighter(editor.settings.highlighter);
 
     // ACE variables
     var aceEditor, aceSession, whitespace;
@@ -45,8 +23,8 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                         id        : 'code-select',
                         className : 'cke_pbckcode_form',
                         label     : editor.lang.pbckcode.mode,
-                        items     : settings.modes,
-                        'default' : settings.modes[0][1],
+                        items     : editor.settings.modes,
+                        'default' : editor.settings.modes[0][1],
                         setup     : function (element) {
                             if (element) {
                                 element = element.getAscendant('pre', true);
@@ -59,7 +37,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                                 element.setAttribute("data-pbcklang", this.getValue());
                             }
                         },
-                        onChange  : function (element) {
+                        onChange  : function () {
                             aceSession.setMode("ace/mode/" + this.getValue());
                         }
                     },
@@ -137,12 +115,12 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
             editor.aceEditor = aceEditor;
 
             // set default settings
-            aceEditor.setTheme("ace/theme/" + settings.theme);
+            aceEditor.setTheme("ace/theme/" + editor.settings.theme);
             aceEditor.setHighlightActiveLine(true);
 
             aceSession = aceEditor.getSession();
-            aceSession.setMode("ace/mode/" + settings.modes[0][1]);
-            aceSession.setTabSize(settings.tab_size);
+            aceSession.setMode("ace/mode/" + editor.settings.modes[0][1]);
+            aceSession.setTabSize(editor.settings.tab_size);
             aceSession.setUseSoftTabs(true);
 
             // load ace extensions
@@ -204,7 +182,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
             this.commitContent(element);
 
             // set the full class to the code tag
-            shighlighter.setCls(pre.getAttribute("data-pbcklang") + " " + settings.cls);
+            shighlighter.setCls(pre.getAttribute("data-pbcklang") + " " + editor.settings.cls);
 
             element.setAttribute('class', shighlighter.getCls());
 
