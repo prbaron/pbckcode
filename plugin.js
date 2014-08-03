@@ -1,10 +1,10 @@
-
 // needed js files
 var js = {
-    ace                : "//cdn.jsdelivr.net/ace/1.1.3/noconflict/ace.js",
-    aceExtWhitespace   : "//cdn.jsdelivr.net/ace/1.1.3/noconflict/ext-whitespace.js",
-    pbSyntaxHighlighter: CKEDITOR.plugins.getPath('pbckcode') + "dialogs/PBSyntaxHighlighter.js"
+    ace                 : "ace.js",
+    aceExtWhitespace    : "ext-whitespace.js",
+    pbSyntaxHighlighter : CKEDITOR.plugins.getPath('pbckcode') + "dialogs/PBSyntaxHighlighter.js"
 };
+
 
 var commandName = 'pbckcode';
 
@@ -12,10 +12,34 @@ var commandName = 'pbckcode';
  * Plugin definition
  */
 CKEDITOR.plugins.add('pbckcode', {
-    icons      : 'pbckcode',
-    lang       : ['fr', 'en'],
-    init       : function (editor) {
+    icons : 'pbckcode',
+    lang  : ['fr', 'en'],
+    init  : function (editor) {
         var plugin = this;
+
+        // if there is no user settings
+        // create an empty object
+        if (editor.config.pbckcode === undefined) {
+            editor.config.pbckcode = {};
+        }
+
+        // default settings object
+        var DEFAULT_SETTINGS = {
+            cls      : '',
+            modes    : [
+                ['HTML', 'html'],
+                ['CSS', 'css'],
+                ['PHP', 'php'],
+                ['JS', 'javascript']
+            ],
+            theme    : 'textmate',
+            tab_size : 4,
+            js       : "http://cdn.jsdelivr.net//ace/1.1.4/noconflict///"
+        };
+
+        // merge user settings with default settings
+        editor.settings = CKEDITOR.tools.extend(DEFAULT_SETTINGS, editor.config.pbckcode, true);
+        editor.settings.js = normalizeJsUrl(editor.settings.js);
 
         // load CSS for the dialog
         editor.on('instanceReady', function () {
@@ -30,16 +54,16 @@ CKEDITOR.plugins.add('pbckcode', {
         });
 
         // link the button to the command
-		editor.addCommand(commandName, new CKEDITOR.dialogCommand('pbckcodeDialog', {
-				allowedContent: 'pre[*]{*}(*)'
-			})
-		);
+        editor.addCommand(commandName, new CKEDITOR.dialogCommand('pbckcodeDialog', {
+                allowedContent : 'pre[*]{*}(*)'
+            })
+        );
 
-		// disable the button while the required js files are not loaded
-	    editor.getCommand(commandName).disable();
+        // disable the button while the required js files are not loaded
+        editor.getCommand(commandName).disable();
 
         // add the plugin dialog element to the plugin
-		CKEDITOR.dialog.add('pbckcodeDialog', plugin.path + 'dialogs/pbckcode.js');
+        CKEDITOR.dialog.add('pbckcodeDialog', plugin.path + 'dialogs/pbckcode.js');
 
         // add the context menu
         if (editor.contextMenu) {
@@ -53,17 +77,35 @@ CKEDITOR.plugins.add('pbckcode', {
 
             editor.contextMenu.addListener(function (element) {
                 if (element.getAscendant('pre', true)) {
-                    return { pbckcodeItem : CKEDITOR.TRISTATE_OFF };
+                    return {pbckcodeItem : CKEDITOR.TRISTATE_OFF};
                 }
             });
         }
 
+        var scripts = [
+            getScriptUrl(editor.settings.js, js.ace),
+            js.pbSyntaxHighlighter
+        ];
+
         // Load the required js files
         // enable the button when loaded
-        CKEDITOR.scriptLoader.load([js.ace, js.pbSyntaxHighlighter], function() {
+        CKEDITOR.scriptLoader.load(scripts, function () {
             editor.getCommand(commandName).enable();
 
-            CKEDITOR.scriptLoader.load([js.aceExtWhitespace]);
+            // need ace to be loaded
+            CKEDITOR.scriptLoader.load([
+                getScriptUrl(editor.settings.js, js.aceExtWhitespace)
+            ]);
         });
+
+
     }
 });
+function normalizeJsUrl(js) {
+    return js.concat("/")
+        .replace(new RegExp('([^:]\/)\/+', 'g'), '$1');
+}
+function getScriptUrl(prefix, scriptName) {
+    return prefix + scriptName;
+}
+
