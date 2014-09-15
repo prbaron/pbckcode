@@ -47,7 +47,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                         className : 'cke_pbckcode_form',
                         label     : 'Tab size',
                         items     : tab_sizes,
-                        'default' : tab_sizes[2],
+                        'default' : editor.settings.tab_size,
                         setup     : function (element) {
                             if (element) {
                                 element = element.getAscendant('pre', true);
