@@ -18,7 +18,8 @@ See it in action ! http://prbaron.github.com/pbckcode/
      // I only set the needed buttons, so feel frey to add those you want in the array
      config.toolbarGroups = [
          { name: 'pbckcode' } ,
-         // you other buttons here
+         // your other buttons here
+         // get information about available buttons here: bhttp://docs.ckeditor.com/?mobile=/guide/dev_toolbar
      ];
  
      // CKEDITOR PLUGINS LOADING
@@ -28,6 +29,7 @@ See it in action ! http://prbaron.github.com/pbckcode/
      // ACF protects your CKEditor instance of adding unofficial tags
      // however it strips out the pre tag of pbckcode plugin
      // add this rule to enable it, useful when you want to re edit a post
+     // only needed on v1.1.x
      config.allowedContent= 'pre[*]{*}(*)'; // add other rules here
  
  
