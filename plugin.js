@@ -13,6 +13,7 @@ var commandName = 'pbckcode';
  */
 CKEDITOR.plugins.add('pbckcode', {
     icons : 'pbckcode',
+    hidpi: true,
     lang  : ['fr', 'en'],
     init  : function (editor) {
         var plugin = this;
