@@ -72,7 +72,7 @@ Choose your synta highlighter output. Remove the option if you want to output a 
 ## modes
 ```
 // Available modes
-['C/C++'        , 'c_pp']
+['C/C++'        , 'c_cpp']
 ['C9Search'     , 'c9search']
 ['Clojure'      , 'clojure']
 ['CoffeeScript' , 'coffee']
