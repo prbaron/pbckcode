@@ -45,7 +45,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
                         type      : 'select',
                         id        : 'code-tabsize-select',
                         className : 'cke_pbckcode_form',
-                        label     : 'Tab size',
+                        label     : editor.lang.pbckcode.tabSize,
                         items     : tab_sizes,
                         'default' : editor.settings.tab_size,
                         setup     : function (element) {
