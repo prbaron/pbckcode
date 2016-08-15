@@ -26,6 +26,11 @@
     font-size   : 12px;
 }
 
+.cke_pbckcode_ace .ace_invisible {
+    opacity: 0;
+    visibility: hidden;
+}
+
 /*good font color on dark theme*/
 .cke_pbckcode_ace.ace_dark * {
     color : inherit;
