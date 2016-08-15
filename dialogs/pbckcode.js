@@ -117,6 +117,7 @@ CKEDITOR.dialog.add('pbckcodeDialog', function (editor) {
             // set default settings
             aceEditor.setTheme("ace/theme/" + editor.settings.theme);
             aceEditor.setHighlightActiveLine(true);
+            aceEditor.setShowInvisibles(true);
 
             aceSession = aceEditor.getSession();
             aceSession.setMode("ace/mode/" + editor.settings.modes[0][1]);
