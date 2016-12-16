@@ -1,14 +1,29 @@
 # Changelog
 
+## v1.2.5 (4.0.x - 4.6.x)
+I updated the code style guide to 2spaces instead of 4.
+
+  * [FEATURE] : Updated ACE editor to 1.2.6
+  * [DOC] : Added the examples directly in the master branch
+
+## v1.2.4 (4.0.x - 4.5.x)
+
+  * [FIX] : Fixed C/C++ mode
+  * [FIX] : Avoid mixed content with cdn script
+  * [FIX] : Fixed tab size value
+  * [FEATURE] : Added HiDPI icon
+  * [FEATURE] : Added Turkish
+  * [FEATURE] : Added Russian
+
 ## v1.2.3 (4.0.x - 4.4.x)
 
-  * [FIX] : Fixes auto focus on the editor when opening the dialog.
-  * [FIX] : Fixes space character encoding
+  * [FIX] : Fixed auto focus on the editor when opening the dialog.
+  * [FIX] : Fixed space character encoding
   * [FEATURE] : Added property to choose the ACE Editor sources
 
 ## v1.2.2 (4.0.x - 4.4.x)
 
-  * [FIX] : Fixes ckeditor style overriden by pbckcode plugin
+  * [FIX] : Fixed ckeditor style overriden by pbckcode plugin
 
 ## v1.2.1 (4.0.x - 4.3.x)
 
