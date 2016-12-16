@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PBCKCode | Basic example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdn.ckeditor.com/4.6.1/basic/ckeditor.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Basic example</h1>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <p><strong>Source</strong></p>
+      <textarea name="editor" id="editor"></textarea>
+    </div>
+    <div class="col-md-6">
+      <p><strong>Result</strong></p>
+      <div id="output">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  CKEDITOR.plugins.addExternal('onchange', 'http://prbaron.github.com/pbckcode/plugins/onchange/', 'plugin.js');
+  CKEDITOR.plugins.addExternal('sourcearea', 'http://prbaron.github.com/pbckcode/plugins/sourcearea/', 'plugin.js');
+  CKEDITOR.plugins.addExternal('pbckcode', 'http://prbaron.github.com/pbckcode/plugins/pbckcode/', 'plugin.js');
+
+  CKEDITOR.replace('editor', {
+    toolbarGroups: [
+      {name: 'document', groups: ['mode']},
+      {name: 'pbckcode'}
+    ],
+    extraPlugins: 'onchange,sourcearea,pbckcode'
+  });
+
+  CKEDITOR.instances.editor.on('change', function(e) {
+    var output = document.getElementById('output');
+    // append the result into the div
+    output.innerHTML = e.editor.getData();
+  });
+</script>
+</body>
+</html>
