@@ -13,7 +13,7 @@ var commandName = 'pbckcode';
 CKEDITOR.plugins.add('pbckcode', {
   icons: 'pbckcode',
   hidpi: true,
-  lang: ['fr', 'en', 'ru'],
+  lang: ['fr', 'en', 'ru', 'pt-br', 'uk'],
   init: function(editor) {
     // if there is no user settings
     // create an empty object
